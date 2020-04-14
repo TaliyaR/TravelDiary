@@ -5,6 +5,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import ru.itis.semestrovaya.models.User;
 
 import java.util.Collection;
+import java.util.Collections;
 
 public class UserDetailsImpl implements UserDetails {
 
@@ -16,7 +17,7 @@ public class UserDetailsImpl implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+        return Collections.singleton(user.getRole());
     }
 
     @Override

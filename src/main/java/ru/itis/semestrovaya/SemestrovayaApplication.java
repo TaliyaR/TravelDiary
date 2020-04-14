@@ -14,6 +14,10 @@ public class SemestrovayaApplication {
         return new BCryptPasswordEncoder();
     }
 
+    @Bean
+    public BCryptPasswordEncoder bCryptPasswordEncoder(){
+        return new BCryptPasswordEncoder();
+    }
 
     public static void main(String[] args) {
         SpringApplication.run(SemestrovayaApplication.class, args);
