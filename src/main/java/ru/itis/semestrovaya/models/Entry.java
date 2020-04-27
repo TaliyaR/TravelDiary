@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.sql.Array;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,12 +29,14 @@ public class Entry {
     @JoinColumn
     private User author;
 
-    private String date;//TODO: какой тип
-
-
-//    private ArrayList<String> photo;
+    private LocalDate date;
     private String location;
-//    private List categories;
-    private Boolean isPublic;
 
+    @Enumerated(value = EnumType.STRING)
+    private IsPublic isPublic;
+
+    @ManyToMany
+    private List<Tag> tags;
+
+    private String filename;
 }

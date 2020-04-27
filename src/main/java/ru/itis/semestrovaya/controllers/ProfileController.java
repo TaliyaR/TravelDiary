@@ -30,7 +30,6 @@ public class ProfileController {
     public String editProfile(UserDto form){
         profileService.edit(form);
         return "redirect:/profile";
-
     }
 
     @PostMapping("/profile_pass")

@@ -1,18 +1,15 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link href="style.css" type="text/css" rel="stylesheet">
+    <link href="home.css" type="text/css" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
           integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
           crossorigin="anonymous">
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
             integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
             crossorigin="anonymous"></script>
-    <title>Diary</title>
+    <meta charset="UTF-8">
+    <title>Главная</title>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light shadow fixed-top">
@@ -24,12 +21,12 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="/home">Главная</a>
-                </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="/diaries">Дневник</a>
+                    <a class="nav-link" href="/home">Главная</a>
                     <span class="sr-only">(current)</span>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/diaries">Дневник</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/profile">Профиль</a>
@@ -41,35 +38,37 @@
         </div>
     </div>
 </nav>
-<!-- Page Content -->
-<div class="container header">
 
-    <!-- Page Heading -->
-    <div class="row">
-        <h1 class="my-4">Мои дневники</h1>
-        <div style="position: absolute; right: 200px;">
-            <a href="/entry"><button class="btn btn-lg btn-entry text-uppercase my-4" type="button">Новая запись</button></a>
-        </div>
-    </div>
-
-
-    <div class="row">
-        <#list entries as entry>
-        <div class="col-lg-4 col-sm-6 mb-4">
-            <div class="card h-100">
-                <a href="#"><img class="card-img-top" src="/img/${entry.filename}" alt=""></a>
-                <div class="card-body">
-                    <h4 class="card-title card-text-color">${entry.title}</h4>
-                    <p class="card-text card-text-color">${entry.location}</p>
-                    <form action="/delete" method="post">
-                        <button class="btn btn-primary btn-delete" type="submit">Удалить</button>
-                    </form>
-                </div>
+<header class="masthead">
+    <div class="container h-100">
+        <div class="row h-100 align-items-center">
+            <div class="col-12 text-center">
+                <h1 class="font-weight-light header-text">TRAVEL DIARIES</h1>
+                <p class="lead header-text">Создай свой собственные заметки путешественника</p>
             </div>
         </div>
-        </#list>
     </div>
-</div>
-<!-- /.container -->
+</header>
+
+
+<!-- Page Content -->
+<section class="py-5">
+    <div class="container">
+        <h2 class="font-weight-light h-text">Дневники</h2>
+        <div class="row">
+            <#list entries as entry>
+                <div class="col-lg-4 col-sm-6 mb-4">
+                    <div class="card h-100">
+                        <a href="#"><img class="card-img-top" src="/img/${entry.filename}" alt=""></a>
+                        <div class="card-body">
+                            <h4 class="card-title card-tex-color">${entry.title}</h4>
+                            <p class="card-text card-tex-color">${entry.location}</p>
+                        </div>
+                    </div>
+                </div>
+            </#list>
+        </div>
+    </div>
+</section>
 </body>
 </html>

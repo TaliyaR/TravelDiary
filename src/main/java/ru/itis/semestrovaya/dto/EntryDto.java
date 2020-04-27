@@ -1,7 +1,10 @@
 package ru.itis.semestrovaya.dto;
 
 import lombok.Data;
-import ru.itis.semestrovaya.models.User;
+import org.springframework.web.multipart.MultipartFile;
+import ru.itis.semestrovaya.models.IsPublic;
+
+import java.time.LocalDate;
 
 @Data
 public class EntryDto {
@@ -9,5 +12,7 @@ public class EntryDto {
     private String text;
     private String date;
     private String location;
-    private Boolean isPrivate;
+    private String isPublic;
+    private String[] tag;
+    private MultipartFile file;
 }

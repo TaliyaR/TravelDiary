@@ -26,5 +26,4 @@ public class UserDetailsServiceImpl implements UserDetailsService {
             throw new SecurityException("User with username <" + username + "> not found");
         }
     }
-
 }

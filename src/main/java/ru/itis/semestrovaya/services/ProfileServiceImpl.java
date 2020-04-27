@@ -20,9 +20,6 @@ public class ProfileServiceImpl implements ProfileService {
     @Autowired
     UsersRepository usersRepository;
 
-        @Autowired
-        BCryptPasswordEncoder bCryptPasswordEncoder;
-
     @Autowired
     private PasswordEncoder passwordEncoder;
 
@@ -42,12 +39,11 @@ public class ProfileServiceImpl implements ProfileService {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         UserDetailsImpl userDetails = (UserDetailsImpl)auth.getPrincipal();
         User user = userDetails.getUser();
-        if(bCryptPasswordEncoder.matches(form.getOldPassword(), user.getPassword())){
+        if(passwordEncoder.matches(form.getOldPassword(), user.getPassword())){
             user.setPassword(passwordEncoder.encode(form.getNewPassword()));
             usersRepository.save(user);
         }else {
             throw new IllegalArgumentException();
         }
-
     }
 }

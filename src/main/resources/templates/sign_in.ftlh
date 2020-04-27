@@ -35,14 +35,14 @@
                                             <label for="inputPassword">Пароль</label>
                                         </div>
 
-                                        <div class="custom-control custom-checkbox mb-3">
-                                            <input type="checkbox" class="custom-control-input container input" id="customCheck1">
-                                            <label class="custom-control-label" for="customCheck1">Запомнить пароль</label>
-                                        </div>
+<#--                                        <div class="custom-control custom-checkbox mb-3">-->
+<#--                                            <input type="checkbox" class="custom-control-input container input" id="customCheck1">-->
+<#--                                            <label class="custom-control-label" for="customCheck1">Запомнить пароль</label>-->
+<#--                                        </div>-->
                                         <button class="btn btn-lg btn-block btn-login text-uppercase" type="submit">Войти</button>
                                         <button class="btn btn-lg btn-danger btn-block text-uppercase mb-2" type="submit">Войти через Google</button>
                                         <div class="text-center">
-                                            <a class="small text-col" href="#">Забыли пароль?</a></div>
+<#--                                            <a class="small text-col" href="#">Забыли пароль?</a></div>-->
                                             <a class="d-block text-center mt-2 small text-col" href="/signUp">Зарегистрироваться</a>
                                     </form>
                                 </div>

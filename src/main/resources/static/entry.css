@@ -24,7 +24,6 @@ body {
 .card-signin .card-img-left {
     width: 45%;
     /* Link to your background image using in the property below! */
-    background: scroll center url('https://source.unsplash.com/IdskngbV6W4/614x712');
     background-size: cover;
 }
 
@@ -107,6 +106,10 @@ body {
     color: #777;
 }
 
+.margin{
+    margin-top: 5rem;
+}
+
 .btn-google {
     color: white;
     background-color: #ea4335;
@@ -125,4 +128,39 @@ body {
 
 .text-col {
     color:#6a9792;
+}
+
+.multiselect {
+    width: 200px;
+}
+
+.selectBox {
+    /*position: relative;*/
+    margin-top: 1rem;
+}
+
+.selectBox select {
+    width: 100%;
+    font-weight: bold;
+}
+
+.overSelect {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+}
+
+#checkboxes {
+    display: none;
+    border: 1px #dadada solid;
+}
+
+#checkboxes label {
+    display: block;
+}
+
+#checkboxes label:hover {
+    background-color: #1e90ff;
 }
