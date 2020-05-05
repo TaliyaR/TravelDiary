@@ -8,12 +8,14 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.context.annotation.RequestScope;
 import ru.itis.semestrovaya.models.User;
 import ru.itis.semestrovaya.security.UserDetailsImpl;
 import ru.itis.semestrovaya.services.UserService;
 
 import java.util.List;
 
+@RequestScope
 @Controller
 public class AdminPageController {
 

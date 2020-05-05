@@ -35,11 +35,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+    @Autowired
+    CustomFilter customFilter;
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable();
 
-        http.addFilterAfter(new CustomFilter(), FilterSecurityInterceptor.class);
+        http.addFilterAfter(customFilter, FilterSecurityInterceptor.class);
 
         http.authorizeRequests()
                 .antMatchers("/home", "/signUp").permitAll()
@@ -47,7 +50,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/admin").hasAuthority("ADMIN")
                 .and()
                 .oauth2Login().loginPage("/signIn");
-//                .antMatchers("/admin").hasRole("ADMIN");
         http.formLogin()
                 .loginPage("/signIn")
                 .usernameParameter("username")
