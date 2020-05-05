@@ -34,6 +34,12 @@
                     <a class="nav-link" href="/profile">Профиль</a>
                     <span class="sr-only">(current)</span>
                 </li>
+                <#if user.getRole() == "ADMIN">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/admin">Админ</a>
+                        <span class="sr-only">(current)</span>
+                    </li>
+                </#if>
                 <li class="nav-item">
                     <a class="nav-link" href="/logout">Выйти</a>
                 </li>
@@ -44,41 +50,38 @@
 <!-- Page Content -->
 <section class="py-5">
     <div class="container">
-<#--        <div class="card border-0 shadow my-5">-->
-<#--            <div class="card-body p-5">-->
-                <div class="row">
-                    <div class="col-sm-12 col-md-10 col-lg-8">
-                        <div class="card card-signin my-5">
-                            <div class="card-body">
-                                <h2 class="font-weight-light mb-h2">Настройки профиля</h2>
-                                <form class="form-signin" action="/profile" method="post">
-                                    <div class="form-label-group">
-                                        <input type="text" id="firstName" name="firstName" class="form-control"
-                                               placeholder="Имя" value="${user.firstName}" required autofocus>
-                                        <label for="firstName">Имя</label>
-                                    </div>
-
-                                    <div class="form-label-group">
-                                        <input type="text" id="lastName" name="lastName" class="form-control"
-                                               placeholder="Фамилия" value="${user.lastName}" required autofocus>
-                                        <label for="lastName">Фамилия</label>
-                                    </div>
-
-                                    <div class="form-label-group">
-                                        <input type="email" id="inputEmail" name="email" class="form-control"
-                                               placeholder="Email" value="${user.email}" required>
-                                        <label for="inputEmail">Email</label>
-                                    </div>
-                                    <hr>
-                                    <button class="btn btn-lg btn-color text-uppercase" type="submit">Сохранить
-                                    </button>
-                                </form>
+        <div class="row">
+            <div class="col-sm-12 col-md-10 col-lg-8">
+                <div class="card card-signin my-5">
+                    <div class="card-body">
+                        <h2 class="font-weight-light mb-h2">Настройки профиля</h2>
+                        <form class="form-signin" action="/profile" method="post">
+                            <div class="form-label-group">
+                                <input type="text" id="firstName" name="firstName" class="form-control"
+                                       placeholder="Имя" value="${user.firstName}" required autofocus>
+                                <label for="firstName">Имя</label>
                             </div>
-                        </div>
+
+                            <div class="form-label-group">
+                                <input type="text" id="lastName" name="lastName" class="form-control"
+                                       placeholder="Фамилия" value="${user.lastName}" required autofocus>
+                                <label for="lastName">Фамилия</label>
+                            </div>
+
+                            <div class="form-label-group">
+                                <input type="email" id="inputEmail" name="email" class="form-control"
+                                       placeholder="Email" value="${user.email}" required>
+                                <label for="inputEmail">Email</label>
+                            </div>
+                            <hr>
+                            <button class="btn btn-lg btn-color text-uppercase" type="submit">Сохранить
+                            </button>
+                        </form>
                     </div>
-<#--                </div>-->
-<#--            </div>-->
+                </div>
+            </div>
         </div>
+    </div>
     </div>
 
     <div class="container">

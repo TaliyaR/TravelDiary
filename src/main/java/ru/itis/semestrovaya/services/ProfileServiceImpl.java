@@ -7,6 +7,7 @@ import org.springframework.security.core.parameters.P;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import ru.itis.semestrovaya.dto.PassForm;
 import ru.itis.semestrovaya.dto.UserDto;
 import ru.itis.semestrovaya.models.User;
@@ -14,7 +15,7 @@ import ru.itis.semestrovaya.repositories.UsersRepository;
 import ru.itis.semestrovaya.security.UserDetailsImpl;
 
 
-@Component
+@Service
 public class ProfileServiceImpl implements ProfileService {
 
     @Autowired

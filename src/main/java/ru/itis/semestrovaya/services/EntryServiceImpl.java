@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import ru.itis.semestrovaya.dto.EntryDto;
 import ru.itis.semestrovaya.models.Entry;
@@ -20,7 +21,7 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.util.*;
 
-@Component
+@Service
 public class EntryServiceImpl implements EntryService {
 
     @Autowired
@@ -33,23 +34,28 @@ public class EntryServiceImpl implements EntryService {
     private String uploadPath;
 
     @Override
-    public List<Entry> getList(User user){
+    public List<Entry> getList(User user) {
         List<Entry> list = entriesRepository.findAllByAuthor(user);
         list.sort(compareByDate);
         return list;
     }
 
     @Override
-    public List<Entry> getList(){
+    public List<Entry> getList() {
         List<Entry> list = entriesRepository.findAllByIsPublic(IsPublic.PUBLIC);
         list.sort(compareByDate);
         return list;
     }
 
     @Override
+    public Entry getById(Long id) {
+        return entriesRepository.findById(id).orElse(null);
+    }
+
+    @Override
     public void save(EntryDto form) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        UserDetailsImpl userDetails = (UserDetailsImpl)auth.getPrincipal();
+        UserDetailsImpl userDetails = (UserDetailsImpl) auth.getPrincipal();
         User user = userDetails.getUser();
         ArrayList<Tag> list = new ArrayList<>();
         for (String s : form.getTag()) {
@@ -64,25 +70,31 @@ public class EntryServiceImpl implements EntryService {
                 .isPublic(IsPublic.valueOf(form.getIsPublic()))
                 .location(form.getLocation())
                 .tags(list)
-                .filename(resultFile(form.getFile()))
+//                .filename(resultFile(form.getFile()))
                 .build();
+
+        if (form.getFile().isEmpty()) {
+            entry.setFilename("e435e6e0-7e79-4f1f-9a49-f9c057f4b9b3.222ffcd7bd1dde07e2734093b24af380.jpg");
+        } else {
+            entry.setFilename(resultFile(form.getFile()));
+        }
 
         entriesRepository.save(entry);
     }
 
     @Override
-    public void delete(Entry entry) {
-        entriesRepository.delete(entry);
+    public void deleteById(Long id) {
+        entriesRepository.deleteById(id);
     }
 
     Comparator<Entry> compareByDate = (o1, o2) -> o2.getDate().compareTo(o1.getDate());
 
-    private String resultFile(MultipartFile file){
+    private String resultFile(MultipartFile file) {
         String fileName = null;
 
-        if(file != null){
+        if (!file.isEmpty()) {
             File uploadDir = new File(uploadPath);
-            if(!uploadDir.exists()){
+            if (!uploadDir.exists()) {
                 uploadDir.mkdir();
             }
 
@@ -94,8 +106,35 @@ public class EntryServiceImpl implements EntryService {
             } catch (IOException e) {
                 throw new IllegalArgumentException();
             }
+//        }else {
+//            fileName = "https://source.unsplash.com/HXjtPt_XRAQ/614x712";
         }
         return fileName;
+    }
+
+    @Override
+    public List<Entry> getEntriesSortedByInterests(User user) {
+        Map<Tag, Long> tagLongMap = new HashMap<>();
+        List<Entry> likedEntries = user.getLikedEntries();
+        for (Entry likedEntry : likedEntries) {
+            for (Tag tag : likedEntry.getTags()) {
+                if (!tagLongMap.containsKey(tag)) {
+                    tagLongMap.put(tag, 1L);
+                } else {
+                    tagLongMap.replace(tag, tagLongMap.get(tag) + 1);
+                }
+            }
+        }
+        List<Entry> entries = entriesRepository.findAllByIsPublic(IsPublic.PUBLIC);
+        for (Entry entry : entries) {
+            Long priority = 0L;
+            for (Tag tag : entry.getTags()) {
+                priority += tagLongMap.containsKey(tag) ? tagLongMap.get(tag) : 0;
+            }
+            entry.setPriority(priority);
+        }
+        entries.sort((o1, o2) -> o2.getPriority().compareTo(o1.getPriority()));
+        return entries;
     }
 
 }

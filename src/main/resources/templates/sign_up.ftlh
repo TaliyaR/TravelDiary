@@ -21,10 +21,16 @@
                         </div>
                         <div class="card-body">
                             <h5 class="card-title text-center">Регистрация</h5>
-                            <form class="form-signin" action="/signUp" method="post">
+<#--                            <#if error??>-->
+<#--                                <div class="alert alert-danger" role="alert">${error}</div>-->
+<#--                            </#if>-->
+                            <form name="signUp" class="form-signin" action="/signUp" method="post">
                                 <div class="form-label-group">
                                     <input type="text" id="inputUsername" name="username" class="form-control" placeholder="Username" required autofocus>
                                     <label for="inputUsername">Username</label>
+                                    <#if error??>
+                                    <div class="valid-feedback">${error} </div>
+                                    </#if>
                                 </div>
 
                                 <div class="form-label-group">

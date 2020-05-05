@@ -3,12 +3,13 @@ package ru.itis.semestrovaya.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import ru.itis.semestrovaya.dto.UserDto;
 import ru.itis.semestrovaya.models.Role;
 import ru.itis.semestrovaya.models.User;
 import ru.itis.semestrovaya.repositories.UsersRepository;
 
-@Component
+@Service
 public class SignUpServiceImpl implements SignUpService {
 
     @Autowired

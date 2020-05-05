@@ -14,6 +14,49 @@
 <body>
 
 <script>
+
+    function validation() {
+        let title = document.newEntry.title;
+        let text = document.newEntry.text;
+        let location = document.newEntry.location;
+        let date = document.newEntry.date;
+        if (text_val(title)) {
+            if (text_val(text)) {
+                if (text_val(location)) {
+                    if (validDate(date)) {
+                        return true;
+
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
+    function text_val(name) {
+        let len = name.value.length;
+        let letters = /^[A-Za-zА-Яа-я]+$/;
+        if (len == 0) {
+            document.getElementById('check').innerHTML = 'Пожалуйста, введите данные';
+            return false;
+        } else if (!name.value.match(letters)) {
+            document.getElementById('check').innerHTML = 'Должны содержаться только буквы';
+            return false;
+        }
+        return true;
+    }
+
+
+    function validDate(entryDate) {
+        var arr = entryDate.value.split('-');
+        var date = new Date();
+        if (arr[0] > date.getFullYear() || arr[0] < 1900) {
+            document.getElementById('checkDate').innerHTML = 'Неверная дата';
+            return false;
+        }
+        return true;
+    }
+
     var expanded = false;
 
     function showCheckboxes() {
@@ -95,7 +138,8 @@
             <div class="card card-signin flex-row my-5">
                 <div class="card-body">
                     <h5 class="card-title text-center">Новая запись</h5>
-                    <form class="form-entry" action="/entry" method="post" enctype="multipart/form-data">
+                    <form name="newEntry" class="form-entry" action="/entry" method="post"
+                          enctype="multipart/form-data" onsubmit="return validation();">
                         <div class="form-label-group">
                             <input type="text" id="inputTitle" name="title" class="form-control" placeholder="Заголовок"
                                    required autofocus>
@@ -141,6 +185,7 @@
                                         <input type="checkbox" name="tag" value="${tag.name}"/>${tag.name}</label>
                                 </#list>
                             </div>
+                            <div class="invalid-feedback">Выберите тэги</div>
                         </div>
                         <#--                        <form method="post" action="/upload" enctype="multipart/form-data">-->
                         <div class="form-group">

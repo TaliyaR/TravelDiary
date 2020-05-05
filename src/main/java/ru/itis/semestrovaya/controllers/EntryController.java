@@ -13,6 +13,7 @@ import ru.itis.semestrovaya.dto.EntryDto;
 import ru.itis.semestrovaya.security.UserDetailsImpl;
 import ru.itis.semestrovaya.services.EntryService;
 import ru.itis.semestrovaya.services.EntryServiceImpl;
+import ru.itis.semestrovaya.services.TagService;
 import ru.itis.semestrovaya.services.TagServiceImpl;
 
 import java.io.File;
@@ -23,10 +24,10 @@ import java.util.UUID;
 public class EntryController {
 
     @Autowired
-    EntryServiceImpl entryService;
+    EntryService entryService;
 
     @Autowired
-    TagServiceImpl tagService;
+    TagService tagService;
 
     @GetMapping("/entry")
     public String getEditPage(Model model) {

@@ -7,17 +7,27 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import ru.itis.semestrovaya.dto.PassForm;
 import ru.itis.semestrovaya.dto.UserDto;
 import ru.itis.semestrovaya.models.User;
 import ru.itis.semestrovaya.security.UserDetailsImpl;
+import ru.itis.semestrovaya.services.ProfileService;
 import ru.itis.semestrovaya.services.ProfileServiceImpl;
+import ru.itis.semestrovaya.services.UserService;
+import ru.itis.semestrovaya.services.UserServiceImpl;
+
+import java.security.SecureRandom;
+import java.util.List;
 
 @Controller
 public class ProfileController {
 
     @Autowired
-    ProfileServiceImpl profileService;
+    ProfileService profileService;
+
+    @Autowired
+    UserService userService;
 
     @GetMapping("/profile")
     public String getProfilePage(@AuthenticationPrincipal UserDetailsImpl userDetails, Model model){
@@ -25,6 +35,7 @@ public class ProfileController {
         model.addAttribute("user", user);
         return "profile";
     }
+
 
     @PostMapping("/profile")
     public String editProfile(UserDto form){

@@ -39,4 +39,10 @@ public class Entry {
     private List<Tag> tags;
 
     private String filename;
+
+    @ManyToMany(mappedBy = "likedEntries")
+    private List<User> likes;
+
+    @Transient
+    private Long priority;
 }

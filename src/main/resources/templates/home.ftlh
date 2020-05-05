@@ -59,10 +59,18 @@
             <#list entries as entry>
                 <div class="col-lg-4 col-sm-6 mb-4">
                     <div class="card h-100">
-                        <a href="#"><img class="card-img-top" src="/img/${entry.filename}" alt=""></a>
+                        <a href="/currentEntry?entryId=${entry.id}"><img class="card-img-top" src="/img/${entry.filename}" alt=""></a>
                         <div class="card-body">
                             <h4 class="card-title card-tex-color">${entry.title}</h4>
                             <p class="card-text card-tex-color">${entry.location}</p>
+                            <form action="/like" method="post">
+                                <button class="btn btn-primary" name="entryId" value="${entry.id}" type="submit">Like</button>
+                            </form>
+<#--                            <div class="col-md-12">-->
+<#--                                <button type="button" class="btn btn-labeled btn-success">-->
+<#--                                    <i class="glyphicon glyphicon-thumbs-up"></i>-->
+<#--                                </button>-->
+<#--                            </div>-->
                         </div>
                     </div>
                 </div>
