@@ -1,9 +1,7 @@
 package ru.itis.semestrovaya.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import ru.itis.semestrovaya.models.User;
 import ru.itis.semestrovaya.repositories.UsersRepository;
@@ -24,6 +22,11 @@ public class UserServiceImpl implements UserService{
     @Override
     public void save(User user){
         usersRepository.save(user);
+    }
+
+    @Override
+    public User getUserByEmail(String email){
+        return usersRepository.findByEmail(email);
     }
 
     @Override

@@ -26,6 +26,10 @@
                     <span class="sr-only">(current)</span>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link" href="/chat">Чат</a>
+                    <span class="sr-only">(current)</span>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" href="/diaries">Дневник</a>
                 </li>
                 <li class="nav-item">

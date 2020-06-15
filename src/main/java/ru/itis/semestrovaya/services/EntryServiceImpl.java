@@ -115,7 +115,9 @@ public class EntryServiceImpl implements EntryService {
     @Override
     public List<Entry> getEntriesSortedByInterests(User user) {
         Map<Tag, Long> tagLongMap = new HashMap<>();
+
         List<Entry> likedEntries = user.getLikedEntries();
+
         for (Entry likedEntry : likedEntries) {
             for (Tag tag : likedEntry.getTags()) {
                 if (!tagLongMap.containsKey(tag)) {
@@ -125,7 +127,9 @@ public class EntryServiceImpl implements EntryService {
                 }
             }
         }
+
         List<Entry> entries = entriesRepository.findAllByIsPublic(IsPublic.PUBLIC);
+
         for (Entry entry : entries) {
             Long priority = 0L;
             for (Tag tag : entry.getTags()) {

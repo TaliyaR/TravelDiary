@@ -1,7 +1,8 @@
 package ru.itis.semestrovaya.aspect;
 
-import org.apache.logging.log4j.ThreadContext;
+import lombok.SneakyThrows;
 import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,11 +26,21 @@ public class Logging {
         System.out.println("Create user's profile.");
     }
 
-    @AfterReturning("saveReader()")
-    public void afterReturningAdvice(JoinPoint joinPoint) {
+    @After("saveReader()")
+    public void after(JoinPoint joinPoint) {
         Object[] lArgs = joinPoint.getArgs();
         UserDto user = (UserDto) lArgs[0];
         logger.info("New user| username: " + user.getUsername());
+    }
+
+    @SneakyThrows
+    @Around("saveReader()")
+    public Object time(ProceedingJoinPoint joinPoint) throws Throwable {
+        long startTime = System.currentTimeMillis();
+        Object object = joinPoint.proceed();
+        long timeTaken = System.currentTimeMillis() - startTime;
+        logger.info("Time Taken by {} is {}", joinPoint, timeTaken);
+        return object;
     }
 
     @AfterThrowing(pointcut = "saveReader()", throwing = "e")

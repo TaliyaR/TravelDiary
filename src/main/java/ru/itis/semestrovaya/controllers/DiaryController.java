@@ -7,14 +7,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import ru.itis.semestrovaya.dto.EntryDto;
 import ru.itis.semestrovaya.models.Entry;
 import ru.itis.semestrovaya.models.User;
 import ru.itis.semestrovaya.security.UserDetailsImpl;
 import ru.itis.semestrovaya.services.EntryService;
-import ru.itis.semestrovaya.services.EntryServiceImpl;
 
-import java.util.*;
+import java.util.List;
 
 @Controller
 public class DiaryController {

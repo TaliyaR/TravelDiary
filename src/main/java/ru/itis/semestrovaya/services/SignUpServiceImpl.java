@@ -20,15 +20,23 @@ public class SignUpServiceImpl implements SignUpService {
 
     @Override
     public void signUp(UserDto form) {
-        User user = User.builder()
-                .firstName(form.getFirstName())
-                .lastName(form.getLastName())
-                .username(form.getUsername())
-                .email(form.getEmail())
-                .password(passwordEncoder.encode(form.getPassword()))
-                .role(Role.USER)
-                .build();
 
-        usersRepository.save(user);
+        String emailRegEx = "^(.+)@(.+)$";
+        String passwordRegEx = ".{8,}";
+
+        if ((form.getUsername().length() != 0)
+                && (form.getEmail().matches(emailRegEx)) && (form.getPassword().matches(passwordRegEx))) {
+
+            User user = User.builder()
+                    .firstName(form.getFirstName())
+                    .lastName(form.getLastName())
+                    .username(form.getUsername())
+                    .email(form.getEmail())
+                    .password(passwordEncoder.encode(form.getPassword()))
+                    .role(Role.USER)
+                    .build();
+
+            usersRepository.save(user);
+        }
     }
 }

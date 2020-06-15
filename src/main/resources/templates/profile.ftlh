@@ -28,6 +28,9 @@
                     <a class="nav-link" href="/home">Главная</a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link" href="/chat">Чат</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" href="/diaries">Дневник</a>
                 </li>
                 <li class="nav-item active">

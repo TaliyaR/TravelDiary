@@ -58,25 +58,29 @@
                                 <#--                                            <input type="checkbox" class="custom-control-input container input" id="customCheck1">-->
                                 <#--                                            <label class="custom-control-label" for="customCheck1">Запомнить пароль</label>-->
                                 <#--                                        </div>-->
-                                <button class="btn btn-lg btn-block btn-login text-uppercase" type="submit">Войти
+                                <button class="btn btn-lg btn-block btn-login text-uppercase mt-2 mb-2" type="submit">Войти
                                 </button>
                             </form>
-                                <form action="/oauth2/authorization/google">
-                                    <button class="btn btn-lg btn-danger btn-block text-uppercase mt-2 mb-2" type="submit">
-                                        Войти через Google
-                                    </button>
-                                </form>
-                                <div class="text-center">
-                                    <#--                                            <a class="small text-col" href="#">Забыли пароль?</a></div>-->
-                                    <a class="d-block text-center mt-2 small text-col"
-                                       href="/signUp">Зарегистрироваться</a>
+                            <#--                                <form action="/oauth2/authorization/google">-->
+                            <#--                                    -->
+                            <#--                                    <button class="btn btn-lg btn-danger btn-block text-uppercase mt-2 mb-2" type="submit">-->
+                            <#--                                        Войти через Google-->
+                            <#--                                    </button>-->
+                            <#--                                </form>-->
 
+                            <a class="btn btn-primary btn-lg btn-block text-uppercase" href="https://discord.com/oauth2/authorize?client_id=709842682574405763&redirect_uri=http%3A%2F%2Flocalhost%3A8080%2FdiscordAuth&response_type=code&scope=identify%20email%20connections%20guilds">Войти через
+                                Discord</a>
+                            <div class="text-center">
+                                <#--                                            <a class="small text-col" href="#">Забыли пароль?</a></div>-->
+                                <a class="d-block text-center mt-2 small text-col"
+                                   href="/signUp">Зарегистрироваться</a>
+
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 </body>
 </html>

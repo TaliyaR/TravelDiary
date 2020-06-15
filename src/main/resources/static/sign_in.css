@@ -8,6 +8,24 @@
     min-height: 100vh;
 }
 
+.btn-discord {
+    font-size: 0.9rem;
+    letter-spacing: 0.05rem;
+    padding: 0.75rem 1rem;
+    border-radius: 2rem;
+}
+
+.btn-discord[type=submit]{
+    background-color: #7289da;
+    border-color: #7289da;
+    color: white;
+}
+
+.btn-discord[type=submit]:hover{
+    background-color: #7289da;
+    color: white;
+}
+
 .bg-image {
     background-image: url('https://source.unsplash.com/IdskngbV6W4/600x1200');
     background-size: cover;

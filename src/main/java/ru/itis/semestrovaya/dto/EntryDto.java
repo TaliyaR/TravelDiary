@@ -2,9 +2,6 @@ package ru.itis.semestrovaya.dto;
 
 import lombok.Data;
 import org.springframework.web.multipart.MultipartFile;
-import ru.itis.semestrovaya.models.IsPublic;
-
-import java.time.LocalDate;
 
 @Data
 public class EntryDto {

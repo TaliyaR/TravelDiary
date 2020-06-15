@@ -44,6 +44,4 @@ public class User {
     @ManyToMany(fetch = FetchType.EAGER)
     private List<Entry> likedEntries;
 
-    private Long googleId;
-
 }

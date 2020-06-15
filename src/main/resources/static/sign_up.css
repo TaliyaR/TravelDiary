@@ -15,6 +15,10 @@ body {
     overflow: hidden;
 }
 
+.text-color{
+    color: #ea4335;
+}
+
 .card-signin .card-title {
     margin-bottom: 2rem;
     font-weight: 300;
